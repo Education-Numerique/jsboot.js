@@ -129,7 +129,7 @@ jsBoot.pack('jsBoot.controllers', function(api) {
       });
     };
 
-    this.boot = function(appKeyStore, serviceConfig) {
+    this.boot = function(appKeyStore, serviceConfig, bypassLock) {
       if (this.status != this.NOT_INITED)
         throw new api.Error('ALREADY_BOOTED', 'You cant boot twice darling');
       // This is a singled app - don't boot anything unless acquiring the lock
@@ -137,7 +137,9 @@ jsBoot.pack('jsBoot.controllers', function(api) {
         // Wait until the lock is owned - but notify everyone still
         if (api.singleApp.status == api.singleApp.WAITING) {
           this.set('status', this.LOCKED_OUT);
-          return;
+          if(!bypassLock){
+            return;
+          }
         }
         // Boot the storage if we can own the lock
         api.storage.boot(appKeyStore, function() {

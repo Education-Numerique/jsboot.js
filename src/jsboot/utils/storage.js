@@ -215,7 +215,6 @@ jsBoot.pack('jsBoot.utils', function(api) {
       },
 
       write: function(key, data, callback) {
-        console.warn('jey writte!', key, data, callback);
         key = prefix + '_' + (key || '');
         try {
           store.setItem(key, json.stringify(data));
