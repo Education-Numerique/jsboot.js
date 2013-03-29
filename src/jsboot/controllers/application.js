@@ -137,7 +137,7 @@ jsBoot.pack('jsBoot.controllers', function(api) {
         // Wait until the lock is owned - but notify everyone still
         if (api.singleApp.status == api.singleApp.WAITING) {
           this.set('status', this.LOCKED_OUT);
-          if(!bypassLock){
+          if (!bypassLock) {
             return;
           }
         }

@@ -58,19 +58,19 @@
         try {
           bb = new WebKitBlobBuilder();
         } catch (e2) {
-          try{
+          try {
             bb = new MozBlobBuilder();
-          }catch(e){
+          }catch (e) {
 
           }
         }
       }
 
-      if(bb){
+      if (bb) {
         bb.append(ab);
         return bb.getBlob(mimeString);
-      }else{
-        return new Blob([ab], { "type" : mimeString } );
+      }else {
+        return new Blob([ab], { 'type' : mimeString });
       }
     };
 
